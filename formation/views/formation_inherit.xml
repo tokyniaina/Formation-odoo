@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="student_inherit_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <page name="internal_notes" position="after">
+                <page string="Infos Etudiants">
+                    <group>
+                        <field name="student_ok"/>
+                        <field name="birthday"/>
+                        <field name="age"
+                               attrs="{'readonly':[('student_ok','=',True)]}"/>
+                    </group>
+                </page>
+                <page string="Inscription"
+                      attrs="{'invisible':[('customer','=',True)]}">
+                    <field name="reg_ids"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record id="teacher_tree_view" model="ir.ui.view">
+        <field name="name">teacher.teacher.tree</field>
+        <field name="model">teacher.teacher</field>
+        <field name="arch" type="xml">
+            <tree string="tree string">
+                <field name="name"/>
+                <field name="age"/>
+                <field name="cin"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="teacher_form_view" model="ir.ui.view">
+        <field name="name">teacher.teacher.form</field>
+        <field name="model">teacher.teacher</field>
+        <field name="arch" type="xml">
+            <form string="form_string">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cin"/>
+                        </group>
+                        <group>
+                            <field name="age"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="public" string="Work Information">
+                            <group>
+                                <group string="Contact Information">
+                                    <field name="address_id"/>
+                                    <field name="work_location"/>
+                                    <field name="work_email" widget="email"/>
+                                    <field name="mobile_phone" widget="phone"/>
+                                    <field name="work_phone" widget="phone"/>
+                                </group>
+                                <group string="Position">
+                                    <field name="department_id"/>
+                                    <field name="job_id"/>
+                                    <field name="job_title"/>
+                                    <field name="parent_id"/>
+                                    <field name="coach_id"/>
+                                    <field name="resource_calendar_id" required="1"/>
+                                    <field name="tz"/>
+                                </group>
+                            </group>
+                            <field name="notes" placeholder="Other Information ..." colspan="4"/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record id="teacher_action" model="ir.actions.act_window">
+        <field name="name">teacher</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">teacher.teacher</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

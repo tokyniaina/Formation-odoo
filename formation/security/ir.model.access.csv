@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_module_user,module.module,model_module_module,,1,1,1,1
+access_section_user,module.section,model_section_section,,1,1,1,1
+access_level_user,module.level,model_level_level,,1,1,1,1
+access_cycle_user,module.cycle,model_cycle_cycle,,1,1,1,1
+access_registration_user,module.registration,model_registration_registration,,1,1,1,1
+access_claim_user,module.claim,model_claim_claim,,1,1,1,1
+access_session_user,module.session,model_session_session,,1,1,1,1
+access_year_user,module.year,model_year_year,,1,1,1,1
+access_prof_user,module.prof,model_teacher_teacher,,1,1,1,1

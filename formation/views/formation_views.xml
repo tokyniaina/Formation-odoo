@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_form_view" model="ir.ui.view">
+        <field name="name">module.module.form</field>
+        <field name="model">module.module</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Modules">
+                <header>
+
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="section_id"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <!--vue kanban misy erreur-->
+    <record id="module_kanban_view" model="ir.ui.view">
+        <field name="name">module.module.kanban</field>
+        <field name="model">module.module</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <field name="name"/>
+                    <field name="section_id"/>
+                    <field name="description"/>
+                    <field name="code"/>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <field name="name"/>
+                            <div class="oe_kanban_details">
+                                <strong>
+                                    <field name="code"/>
+                                </strong>
+                                <ul>
+                                    <li t-if="record.name.raw_value">
+                                        <field name="name"/>
+                                    </li>
+                                    <li t-if="record.section_id.raw_value">
+                                        <field name="section_id"/>
+                                    </li>
+                                    <li t-if="record.description.raw_value">
+                                        <field name="description"/>
+                                    </li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="module_tree_view" model="ir.ui.view">
+        <field name="name">module.module.tree</field>
+        <field name="model">module.module</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Modules">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="section_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--<record id="_search" model="ir.ui.view">
+        <field name="name">.search</field>
+        <field name="model"></field>
+        <field name="arch" type="xml">
+            <search string="">
+                
+            </search>
+        </field>
+    </record>-->
+
+    <record id="module_action_view" model="ir.actions.act_window">
+        <field name="name">Module</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">module.module</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+    </record>
+
+    <!--vue de Section-->
+    <record id="section_form_view" model="ir.ui.view">
+        <field name="name">section.section.form</field>
+        <field name="model">section.section</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Modules">
+                <header>
+
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="level_id"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Modules">
+                            <field name="module_ids">
+                                <!--<tree>-->
+                                <!--<field name="name"/>-->
+                                <!--<field name="Code"/>-->
+                                <!--</tree>-->
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="section_tree_view" model="ir.ui.view">
+        <field name="name">section.section.tree</field>
+        <field name="model">section.section</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Modules">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="level_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="section_action_view" model="ir.actions.act_window">
+        <field name="name">Section</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">section.section</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--vue de Level-->
+    <record id="level_form_view" model="ir.ui.view">
+        <field name="name">level.level.form</field>
+        <field name="model">level.level</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Niveau">
+                <header>
+
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="cycle_id"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Section">
+                            <field name="section_ids">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="level_tree_view" model="ir.ui.view">
+        <field name="name">level.level.tree</field>
+        <field name="model">level.level</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Niveau">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="cycle_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="level_action_view" model="ir.actions.act_window">
+        <field name="name">Niveau</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">level.level</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--vue de Cycle-->
+    <record id="cycle_form_view" model="ir.ui.view">
+        <field name="name">cycle.cycle.form</field>
+        <field name="model">cycle.cycle</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Niveau">
+                <header>
+
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Niveau">
+                            <field name="level_ids">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="cycle_tree_view" model="ir.ui.view">
+        <field name="name">cycle.cycle.tree</field>
+        <field name="model">cycle.cycle</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Cycle">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="cycle_action_view" model="ir.actions.act_window">
+        <field name="name">Cycle University</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cycle.cycle</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--vue de enregistration-->
+    <record id="registration_form_view" model="ir.ui.view">
+        <field name="name">registration.registration.form</field>
+        <field name="model">registration.registration</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Inscription">
+                <header>
+                   <button name="state"
+                           widget="statusbar"
+                           clickable="true"
+                   />
+
+                </header>
+                <sheet string="">
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(claim_action_view)d"
+                                type="action"
+                                class="oe_inline oe_stat_button"
+                                icon="fa-book"
+                                context="{'search_default_reg_id' : active_id}"
+                                help="show the information for this">
+                            <field name="nbr" widget="statinfo" string="Réclamation"/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="student_id"/>
+                            <!--<field name="nbr"/>-->
+
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="cycle_id"/>
+                            <field name="year_id"/>
+                            <!--<field name="state"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Reclamation">
+                            <field name="claim_ids">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="reg_tree_view" model="ir.ui.view">
+        <field name="name">registration.registration.tree</field>
+        <field name="model">registration.registration</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Inscription">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="cycle_id"/>
+                <field name="year_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="reg_action_view" model="ir.actions.act_window">
+        <field name="name">Inscription</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">registration.registration</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--vue de Reclamation-->
+    <record id="claim_form_view" model="ir.ui.view">
+        <field name="name">claim.claim.form</field>
+        <field name="model">claim.claim</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Reclamation">
+                <header>
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+                            <field name="user_id"/>
+                            <field name="state"/>
+                            <field name="amount"/>
+                            <field name="hours_nbr"/>
+                            <field name="total"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="end_date"/>
+                            <field name="reg_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Decsrition">
+                            <field name="description">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="claim_calendar_view" model="ir.ui.view">
+        <field name="name">claim.claim.calendar</field>
+        <field name="model">claim.claim</field>
+        <field name="arch" type="xml">
+            <calendar string="Reclamation" date_start="start_date" color="user_id">
+                <field name="name"/>
+                <field name="code"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id="claim_request_views_search" model="ir.ui.view">
+        <field name="name">claim.claim.search</field>
+        <field name="model">claim.claim</field>
+        <field name="arch" type="xml">
+            <search string="">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="reg_id"/>
+                <separator/>
+                <filter name="new" string="Nouvelle" domain="[('state','=','new')]"/>
+                <filter name="done" string="Validé" domain="[('state','=','done')]"/>
+                <filter name="cancel" string="Annuler" domain="[('state','=','cancel')]"/>
+
+                <!--Il ya une problem sur la dommaine-->
+                <!--<group expand="0" string="Group By">-->
+                <!--<filter string="Responsable" domain="[]" context="{'group_by':'user_id'}"/>-->
+                <!--<filter string="Inscription" domain="[]" context="{'group_by':'reg_id'}"/>-->
+                <!--</group>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="claim_graph_view" model="ir.ui.view">
+        <field name="name">claim.claim.graph</field>
+        <field name="model">claim.claim</field>
+        <field name="arch" type="xml">
+            <graph string="Graph">
+                <field name="state"/>
+                <field name="name"/>
+            </graph>
+
+        </field>
+    </record>
+
+    <record id="claim_pivot_view" model="ir.ui.view">
+        <field name="name">claim.claim.pivot</field>
+        <field name="model">claim.claim</field>
+        <field name="arch" type="xml">
+            <pivot string="Pivot">
+                <field name="state"/>
+                <field name="name"/>
+            </pivot>
+
+        </field>
+    </record>
+
+    <record id="claim_tree_view" model="ir.ui.view">
+        <field name="name">claim.claim.tree</field>
+        <field name="model">claim.claim</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Reclamation">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="reg_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="claim_action_view" model="ir.actions.act_window">
+        <field name="name">Reclamation</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">claim.claim</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,calendar,form,graph,pivot</field>
+    </record>
+
+    <!--vue de session-->
+    <record id="session_form_view" model="ir.ui.view">
+        <field name="name">session.session.form</field>
+        <field name="model">session.session</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Session">
+                <header>
+
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="end_date"/>
+                            <field name="year_id"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Decsrition">
+                            <field name="description">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="session_tree_view" model="ir.ui.view">
+        <field name="name">session.session.tree</field>
+        <field name="model">session.session</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Session">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="year_id"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="session_action_view" model="ir.actions.act_window">
+        <field name="name">Session</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">session.session</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="student_action_view" model="ir.actions.act_window">
+        <field name="name">Etudiants</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="domain">[('student_ok','=',True)]</field>
+        <field name="context">{'default_student_ok','=',True}</field>
+    </record>
+
+    <!--vue de Annee-->
+    <record id="year_form_view" model="ir.ui.view">
+        <field name="name">year.year.form</field>
+        <field name="model">year.year</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Année Univ">
+                <header>
+
+                </header>
+                <sheet string="">
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="start_date"/>
+
+                        </group>
+                        <group>
+                            <field name="code"/>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Session">
+                            <field name="session_ids">
+
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="year_tree_view" model="ir.ui.view">
+        <field name="name">year.tree</field>
+        <field name="model">year.year</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="Année Univ">
+                <field name="name"/>
+                <field name="code"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="year_action_view" model="ir.actions.act_window">
+        <field name="name">Anneé Univ</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">year.year</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
